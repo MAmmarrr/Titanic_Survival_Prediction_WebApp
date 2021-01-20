@@ -1,0 +1,105 @@
+{% extends 'base.html'%}
+ 
+{% block content %}
+
+    <div class="container py-5">
+      <header class="text-center text-white py-5">
+        <h1 class="display-4 font-weight-bold mb-4">Find Out Will You Survive or not!</h1>
+        <p class="lead mb-0">Imagine Yourself as a passenger of an Infamous Titanic Ship</p>
+        <p class="font-italic">Snippet By <a href="https://github.com/MAmmarrr" class="text-white">
+            <u>M.Ammarrr</u></a>
+        </p>
+      </header>
+      <div class="text-white">
+        <p class="lead"></p>
+      </div>
+    </div>
+  
+    {% if rating %}
+        <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
+            <div class="toast" role="alert" aria-live="assertive" data-autohide="false" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="mr-auto">Gypsie Says</strong>
+                <small></small>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src= "https://cdn.pixabay.com/photo/2017/10/13/14/22/boat-2847737__340.png" alt="Card image cap">
+                        <div class="card-body">
+                          <h1 class="card-title">You Survived</h1>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    {% elif rating == False %}
+        <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
+            <div class="toast" role="alert" aria-live="assertive" data-autohide="false" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="mr-auto">Gypsie Says</strong>
+                <small>{{DateTime.Now}}</small>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src= "https://cdn.pixabay.com/photo/2016/10/28/16/11/vintage-1778428__340.png" alt="Card image cap">
+                        <div class="card-body">
+                            <h1 class="card-title">You Drowned</h1>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    {% endif %}
+    <div class="container">
+<form method="POST" action="score">
+        {% csrf_token %}
+    <div class="form-group">
+        <label class="text-white">Name</label>
+        <input type="text" class="form-control" placeholder="Passenger Name" name="Name">
+    </div>
+        <div class="form-group">
+            <label class="text-white">Gender</label>
+            <input type="text" class="form-control" placeholder="Male or Female" name="Sex">
+        </div>  
+    
+        <div class="form-group">
+            <label class="text-white">Passenger Class</label>
+            <input type="text" class="form-control" placeholder="Enter Class 1, 2 or 3" name="Pclass">
+        </div>
+    <div class = "form-group">
+        <label class="text-white">Number of Siblings or Spouse</label>
+        <input type="text" placeholder="SibSp" class="form-control"name = "SibSp">
+    </div>
+    <div class="form-group">
+        <label class="text-white">Number of Parents or Childeren</label>
+        <input type="text" placeholder="ParCh" class="form-control"name = "Parch">
+    </div>
+    
+    <div class="form-group">
+        <label class="text-white">Age</label>
+        <input type="text" placeholder="Age" class="form-control"name = "Age">
+    </div>
+    <div class = "form-group">
+        <label class="text-white">Fare</label>
+        <input type="text" placeholder=" 0 - 100 $" class="form-control"name = "Fare">
+    </div>
+    <div class="form-group">
+        <label class="text-white">Destination</label>
+        <input type="text" class="form-control" placeholder="'C' 'Q' or 'S' " name="Embarked">
+    </div>
+     <div class = "form-group">
+                <input type="submit" value="Get Score">
+            </div>
+            </form>
+        </div>
+    {% endblock %}
