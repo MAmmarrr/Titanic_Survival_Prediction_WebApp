@@ -2,8 +2,8 @@
  
 {% block content %}
 
-    <div class="container py-5">
-      <header class="text-center text-white py-5">
+    <div class="container">
+      <header class="text-center text-white py-2">
         <h1 class="display-4 font-weight-bold mb-4">Find Out Will You Survive or not!</h1>
         <p class="lead mb-0">Imagine Yourself as a passenger of an Infamous Titanic Ship</p>
         <p class="font-italic">Snippet By <a href="https://github.com/MAmmarrr" class="text-white">
@@ -14,7 +14,6 @@
         <p class="lead"></p>
       </div>
     </div>
-  
     {% if rating %}
         <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
             <div class="toast" role="alert" aria-live="assertive" data-autohide="false" aria-atomic="true">
@@ -37,6 +36,14 @@
               </div>
             </div>
         </div>
+        <div class="d-flex justify-content-center">
+        <form method="POST" action="SurvivalPrediction">
+            {% csrf_token %}
+            <button type="submit" class = "form-group btn btn-info">
+            Try Again    
+            </button>  
+        </form>
+    </div>
     {% elif rating == False %}
         <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
             <div class="toast" role="alert" aria-live="assertive" data-autohide="false" aria-atomic="true">
@@ -58,6 +65,14 @@
                 </div>
               </div>
             </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <form method="POST" action="SurvivalPrediction">
+                {% csrf_token %}
+                <button type="submit" class = "form-group btn btn-info">
+                Try Again    
+                </button>  
+            </form>
         </div>
     {% endif %}
     <div class="container " >
